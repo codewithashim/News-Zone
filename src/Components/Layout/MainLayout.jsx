@@ -11,13 +11,13 @@ const MainLayout = () => {
       <Header></Header>
       <Container>
         <Row>
-          <Col lg="3" className="d-none d-lg-block">
+          <Col lg="2" className="d-none d-lg-block">
             <LeftSidNav></LeftSidNav>
           </Col>
-          <Col lg="6">
+          <Col lg="7">
             <Outlet></Outlet>
           </Col>
-          <Col lg="3">
+          <Col lg="3" >
             <RightSideNav></RightSideNav>
           </Col>
         </Row>

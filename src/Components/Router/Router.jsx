@@ -12,15 +12,26 @@ export const route = createBrowserRouter([
     path: "/",
     element: <MainLayout></MainLayout>,
     children: [
-      { path: "/", element: <Home></Home> },
-      { path: "/home", element: <Home></Home> },
+      {
+        path: "/",
+        loader: () => fetch("http://localhost:8080/news"),
+        element: <Home></Home>,
+      },
+      {
+        path: "/home",
+        element: <Home></Home>,
+      },
       {
         path: "/cetagory/:id",
+        loader: ({ params }) => {
+          return fetch(`http://localhost:8080/cetagory/${params.id}`);
+        },
         element: <Cetagory></Cetagory>,
       },
       {
         path: "/news/:id",
         element: <News></News>,
+        loader: ({params}) => fetch(`http://localhost:8080/news/${params.id}`),
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },

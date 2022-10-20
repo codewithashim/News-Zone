@@ -14,7 +14,7 @@ const LeftSidNav = () => {
   return (
     <>
       <main>
-        <h4>All Cetagories {cetagories.length}</h4>
+        <h5>All Cetagories {cetagories.length}</h5>
 
         <div>
           {cetagories.map((cetagory) => {

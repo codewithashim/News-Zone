@@ -12,12 +12,11 @@ const firebaseConfig = {
   projectId: "news-today-6205f",
   storageBucket: "news-today-6205f.appspot.com",
   messagingSenderId: "863502646176",
-  appId: "1:863502646176:web:e37019fc082d3509c882c5",
-  measurementId: "G-312K5YTDX5"
+  appId: "1:863502646176:web:803c0f10ac769310c882c5",
+  measurementId: "G-PHXW4G8469",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-
 export default app;
