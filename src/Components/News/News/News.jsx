@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 const News = () => {
   const news = useLoaderData(); // this is the data from the loader
 
-  const { title, details, image_url } = news;
+  const { title, details, image_url, category_id } = news;
 
   return (
     <div className="py-5">
@@ -16,7 +16,9 @@ const News = () => {
           <Card.Title>{title}</Card.Title>
           <Card.Text>{details}</Card.Text>
           <Button variant="primary">
-            <Link to="/" className="text-white">Back To Home</Link>
+            <Link to={`/cetagory/${category_id}`} className="text-white">
+              Back To Main News
+            </Link>
           </Button>
         </Card.Body>
       </Card>

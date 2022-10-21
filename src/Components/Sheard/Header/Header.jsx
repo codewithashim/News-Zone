@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import LeftSidNav from "../LeftSidNav/LeftSidNav";
 import logo from "../../../Assets/AR-NewsPortal.png";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { FaUserAlt } from "react-icons/fa";
+import Button from "react-bootstrap/esm/Button";
+import UseFirebase from "../../../Hokes/UseFirebase";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  const { hendelLogout } = UseFirebase();
+
   return (
     <div className="mb-2">
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -26,7 +33,22 @@ const Header = () => {
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
+              <Nav.Link>
+                {user?.uid ? (
+                  <>
+                    <span className="mx-3">{user?.email}</span>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => hendelLogout()}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <FaUserAlt></FaUserAlt>
+                )}
+              </Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
                 Dank memes
               </Nav.Link>

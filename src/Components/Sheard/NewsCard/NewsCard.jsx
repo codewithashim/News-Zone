@@ -37,7 +37,6 @@ const NewsCard = ({ news }) => {
             <Card.Img
               variant="top"
               src={image_url}
-              
             />
             <Card.Title>{title}</Card.Title>
             <Card.Text>

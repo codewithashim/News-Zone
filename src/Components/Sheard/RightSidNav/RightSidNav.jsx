@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {
@@ -9,20 +8,36 @@ import {
   FaWhatsapp,
   FaInstagram,
   FaYoutube,
+  FaEnvelope,
 } from "react-icons/fa";
 import "./RightSidNav.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import Crasoal from "./Crasoal/Crasoal";
 import { Link } from "react-router-dom";
+import UseFirebase from "../../../Hokes/UseFirebase";
 
 const RightSidNav = () => {
+  const { hendelSignInWithGoogle } = UseFirebase();
+  //=============================== Google Sign In ===============================
+
   return (
     <>
       <main>
         <ButtonGroup vertical>
           <Button className="mb-2" variant="outline-primary">
+            <Link to="/login" className="">
+              <FaEnvelope></FaEnvelope> Login With Email
+            </Link>
+          </Button>
+
+          <Button
+            className="mb-2"
+            variant="outline-primary"
+            onClick={() => hendelSignInWithGoogle()}
+          >
             <FaGoogle></FaGoogle> Login With Google
           </Button>
+
           <Button variant="outline-dark">
             <FaGithub></FaGithub> Login With Github
           </Button>
