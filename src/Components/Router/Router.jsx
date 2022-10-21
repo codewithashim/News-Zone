@@ -17,7 +17,7 @@ export const route = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:8080/news"),
+        loader: () => fetch("https://news-today-server.vercel.app/news"),
         element: <Home></Home>,
       },
       {
@@ -27,7 +27,7 @@ export const route = createBrowserRouter([
       {
         path: "/cetagory/:id",
         loader: ({ params }) => {
-          return fetch(`http://localhost:8080/cetagory/${params.id}`);
+          return fetch(`https://news-today-server.vercel.app/cetagory/${params.id}`);
         },
         element: <Cetagory></Cetagory>,
       },
@@ -39,7 +39,7 @@ export const route = createBrowserRouter([
           </PriveteRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:8080/news/${params.id}`),
+          fetch(`https://news-today-server.vercel.app/news/${params.id}`),
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
