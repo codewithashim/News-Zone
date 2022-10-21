@@ -6,7 +6,7 @@ const LeftSidNav = () => {
   const [cetagories, setCetagories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/news-cetagories")
+    fetch("https://news-today-server.vercel.app/news-cetagories")
       .then((res) => res.json())
       .then((data) => setCetagories(data));
   }, []);
@@ -20,9 +20,7 @@ const LeftSidNav = () => {
           {cetagories.map((cetagory) => {
             return (
               <p key={cetagory.id}>
-                <Link to={`/cetagory/${cetagory.id}`}>
-                  {cetagory.name}
-                </Link>
+                <Link to={`/cetagory/${cetagory.id}`}>{cetagory.name}</Link>
               </p>
             );
           })}
