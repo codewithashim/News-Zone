@@ -33,10 +33,16 @@ const Header = () => {
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link>
+              <Link to="/profile">
                 {user?.uid ? (
                   <>
                     <span className="mx-3">{user?.email}</span>
+                    <img 
+                      src={user.photoURL}
+                      alt="profie"
+                      width="40"
+                      style={{ borderRadius: "50%" ,marginRight: "10px" }}
+                    />
                     <Button
                       variant="secondary"
                       size="sm"
@@ -48,10 +54,7 @@ const Header = () => {
                 ) : (
                   <FaUserAlt></FaUserAlt>
                 )}
-              </Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
-              </Nav.Link>
+              </Link>
             </Nav>
             <div className="d-lg-none">
               <LeftSidNav></LeftSidNav>

@@ -23,7 +23,7 @@ const RightSidNav = () => {
   return (
     <>
       <main>
-        <ButtonGroup vertical>
+        <ButtonGroup vertical className="w-full">
           <Button className="mb-2" variant="outline-primary">
             <Link to="/login" className="">
               <FaEnvelope></FaEnvelope> Login With Email

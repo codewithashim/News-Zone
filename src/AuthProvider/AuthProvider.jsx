@@ -4,9 +4,11 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../Firebase/Firebsae.config";
 import { useEffect } from "react";
@@ -16,21 +18,28 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [loading, setLoading] = useState(true);
 
   //=============================== Watcher ===============================
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser === null || currentUser.emailVerified) {
+        setUser(currentUser);
+      }
+      setLoading(false);
     });
+
     return () => unsubscribed;
   }, []);
 
   //=============================== Google Sign In ===============================
   const ProviderGoogleLogin = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   //=============================== Sign Out ===============================
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   //=============================== Sign Out ===============================
@@ -38,12 +47,27 @@ const AuthProvider = ({ children }) => {
   //=============================== Register ===============================
 
   const providerRegister = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   //=============================== Login ===============================
   const providerLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  //=============================== update ===============================
+  const updateUserProfile = (profile) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  //=============================== Veryfy Email ===========================
+
+  const veryfyEmail = () => {
+    setLoading(true);
+    return sendEmailVerification(auth.currentUser);
   };
 
   const authInfo = {
@@ -52,6 +76,10 @@ const AuthProvider = ({ children }) => {
     logOut,
     providerLogin,
     providerRegister,
+    loading,
+    setLoading,
+    updateUserProfile,
+    veryfyEmail,
   };
 
   return (

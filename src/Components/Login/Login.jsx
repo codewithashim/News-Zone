@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import UseFirebase from "../../Hokes/UseFirebase";
 
 const Login = () => {
-  const { hendelLogin } = UseFirebase();
+  const { hendelLogin, error } = UseFirebase();
 
   return (
     <>
@@ -33,6 +33,9 @@ const Login = () => {
                 required
               />
             </Form.Group>
+            <div>
+             <p className="text-danger">{error}</p>
+            </div>
             <Button variant="outline-secondary">
               <Link to="/register">Don't Have Account Register Now</Link>
             </Button>{" "}

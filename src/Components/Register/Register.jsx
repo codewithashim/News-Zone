@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -6,6 +6,11 @@ import UseFirebase from "../../Hokes/UseFirebase";
 
 const Register = () => {
   const { hendelRegister } = UseFirebase();
+  const [accepted, setAccepted] = useState(false);
+
+  const handelAccepted = (event) => {
+    setAccepted(event.target.checked);
+  };
 
   return (
     <>
@@ -17,7 +22,17 @@ const Register = () => {
               <Form.Control
                 type="text"
                 name="fullName"
+                required
                 placeholder="Enter full-name"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Profile Photo</Form.Label>
+              <Form.Control
+                type="text"
+                name="photoURL"
+                required
+                placeholder="Enter photoURL"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -41,7 +56,23 @@ const Register = () => {
             <Button variant="outline-dark" className="m-2">
               <Link to="/login">Alrady have an account login now</Link>
             </Button>{" "}
-            <Button variant="primary" type="submit" className="m-2">
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check
+                type="checkbox"
+                onClick={handelAccepted}
+                label={
+                  <>
+                    I agree to the <Link to="/trams">Terms & Conditions</Link>
+                  </>
+                }
+              />
+            </Form.Group>
+            <Button
+              variant="primary"
+              type="submit"
+              className="m-2"
+              disabled={!accepted}
+            >
               Register Now
             </Button>
           </Form>

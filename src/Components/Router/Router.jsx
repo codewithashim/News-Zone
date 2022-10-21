@@ -6,6 +6,9 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Cetagory from "../Cetagory/Catagory/Cetagory";
 import News from "../News/News/News";
+import PriveteRoute from "./PriveteRoute";
+import TramsAndConditions from "../TramsAndCondition/TramsAndConditions";
+import Profile from "../Profile/Profile";
 
 export const route = createBrowserRouter([
   {
@@ -30,11 +33,26 @@ export const route = createBrowserRouter([
       },
       {
         path: "/news/:id",
-        element: <News></News>,
-        loader: ({params}) => fetch(`http://localhost:8080/news/${params.id}`),
+        element: (
+          <PriveteRoute>
+            <News></News>
+          </PriveteRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:8080/news/${params.id}`),
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
+      { path: "/trams", element: <TramsAndConditions></TramsAndConditions> },
+      {
+        path: "/profile",
+        element: (
+          <PriveteRoute>
+            <Profile></Profile>
+          </PriveteRoute>
+        ),
+      },
+
       { path: "*", element: <NotFound></NotFound> },
     ],
   },
