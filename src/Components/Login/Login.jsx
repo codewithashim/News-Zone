@@ -3,10 +3,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import UseFirebase from "../../Hokes/UseFirebase";
+import useTitle from "../../Hokes/UseTitle";
 
 const Login = () => {
   const { hendelLogin, error } = UseFirebase();
-
+  useTitle("Login");
   return (
     <>
       <section className="my-5">
@@ -34,7 +35,7 @@ const Login = () => {
               />
             </Form.Group>
             <div>
-             <p className="text-danger">{error}</p>
+              <p className="text-danger">{error}</p>
             </div>
             <Button variant="outline-secondary">
               <Link to="/register">Don't Have Account Register Now</Link>

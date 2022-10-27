@@ -2,8 +2,11 @@ import React, { useContext, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useTitle from "../../Hokes/UseTitle";
 
 const Profile = () => {
+  useTitle("Profile");
+
   const { user } = useContext(AuthContext);
   const [name, setName] = useState(user.displayName);
   const photoURLRef = useRef(user.photoURL);

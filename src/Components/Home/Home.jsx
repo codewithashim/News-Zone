@@ -1,10 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../Hokes/UseTitle";
 import NewsCard from "../Sheard/NewsCard/NewsCard";
 
 const Home = () => {
   const news = useLoaderData(); // this is the data from the loader
-
+  useTitle("Home");
   return (
     <>
       <section>

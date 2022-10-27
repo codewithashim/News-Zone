@@ -3,11 +3,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import UseFirebase from "../../Hokes/UseFirebase";
+import useTitle from "../../Hokes/UseTitle";
 
 const Register = () => {
   const { hendelRegister } = UseFirebase();
   const [accepted, setAccepted] = useState(false);
-
+  useTitle("Register");
   const handelAccepted = (event) => {
     setAccepted(event.target.checked);
   };
